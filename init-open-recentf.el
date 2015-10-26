@@ -47,6 +47,7 @@
 ;;
 
 ;;; Code:
+(require 'cl-lib)
 (require 'recentf)
 
 (defgroup init-open-recentf nil
@@ -91,7 +92,7 @@
   "Open recent file command you want (Do What I Mean)."
   (if init-open-recentf-function
       (call-interactively init-open-recentf-function)
-    (case (init-open-recentf-interface)
+    (cl-case (init-open-recentf-interface)
      ((helm) (helm-recentf))
      ((ido) (find-file (ido-completing-read "Find recent file: " recentf-list)))
      ((anything) (anything-for-files))
