@@ -1,0 +1,40 @@
+* init-open-recentf.el
+
+Open recentf immediately after Emacs is started.
+If files are opend, does nothing.  Open recentf otherwise.
+(For example, it is when execute by specifying the file from command line.)
+This script uses only `after-init-hook'. Not privede interactive functions.
+
+put into your own .emacs file (~/.emacs.d/init.el)
+
+#+BEGIN_SRC emacs-lisp
+(init-open-recentf)
+#+END_SRC
+
+=init-open-recentf= Support helm, ido, anything (or nothing).
+Determine from your environment, but it is also possible that you explicitly.
+
+#+BEGIN_SRC emacs-lisp
+(setq init-open-recentf-interface 'ido)
+(init-open-recentf)
+#+END_SRC
+
+If you want to do another thing, you can specify an arbitrary function.
+
+#+BEGIN_SRC emacs-lisp
+(setq init-open-recentf-function #'awesome-open-recentf)
+(init-open-recentf)
+#+END_SRC
+
+** Instllation
+*** Cask
+See [[http://cask.readthedocs.org/en/latest/guide/installation.html][Cask Installation]].  put into your own =Cask= file.
+*** MELPA
+See [[http://melpa.org/#/getting-started][Getting Started - MELPA]].  =M-x package-install= and type =magic-filetype=.
+*** El-get
+See [[https://github.com/dimitri/el-get#installation][El-Get #Installation]].  put into your own =init.el= file.
+#+BEGIN_SRC emacs-lisp
+(el-get-bundle magic-filetype)
+#+END_SRC
+
+
