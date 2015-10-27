@@ -28,7 +28,8 @@
 ;; Open recentf immediately after Emacs is started.
 ;; If files are opend, does nothing.  Open recentf otherwise.
 ;; (For example, it is when execute by specifying the file from command line.)
-;; This script uses only `after-init-hook'. Not privede interactive functions.
+;; This script uses only advice function for startup.  Not privede interactive functions.
+;; (This approach's dirty hack, but the hook to be the alternative does not exist.)
 ;;
 ;; put into your own .emacs file (~/.emacs.d/init.el)
 ;;
@@ -98,18 +99,22 @@
      ((anything) (anything-for-files))
      ((default) (recentf-open-files)))))
 
-(defun init-open-recentf-open ()
-  "If files are opend, does nothing.  Open recentf otherwise."
-  (cond
-   ((init-open-recentf-buffer-files) t)
-   ((recentf-enabled-p) (init-open-recentf-dwim))
-   (:else
-    (error "recentf-mode is not enabled."))))
+(defun init-open-recentf-open (&rest dummy-args)
+  "If files are opend, does nothing.  Open recentf otherwise.
+`DUMMY-ARGS' is ignored."
+  (prog1
+      (cond
+       ((init-open-recentf-buffer-files) t)
+       ((recentf-enabled-p) (init-open-recentf-dwim))
+       (:else
+        (error "recentf-mode is not enabled."))))
+  (advice-remove 'display-startup-screen #'init-open-recentf-open))
 
 ;;;###autoload
 (defun init-open-recentf ()
   "Set 'after-init-hook ."
-  (add-hook 'after-init-hook 'init-open-recentf-open))
+  (advice-add 'command-line-1 :after #'init-open-recentf-open)
+  t)
 
 (provide 'init-open-recentf)
 ;;; init-open-recentf.el ends here
