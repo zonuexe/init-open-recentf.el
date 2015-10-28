@@ -6,7 +6,7 @@
 ;; Created: 26 Oct 2015
 ;; Version: 0.0.1
 ;; Keywords: file recentf after-init-hook
-;; Package-Requires: ((emacs "24"))
+;; Package-Requires: ((emacs "24.4"))
 
 ;; This file is NOT part of GNU Emacs.
 
