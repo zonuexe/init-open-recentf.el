@@ -29,3 +29,12 @@ If you want to do another thing, you can specify an arbitrary function.
 ** Instllation
 *** Cask
 See [[http://cask.readthedocs.org/en/latest/guide/installation.html][Cask Installation]].  put into your own =Cask= file.
+*** MELPA
+See [[http://melpa.org/#/getting-started][Getting Started - MELPA]].  =M-x package-install= and type =init-open-recentf=.
+*** El-get
+See [[https://github.com/dimitri/el-get#installation][El-Get #Installation]].  put into your own =init.el= file.
+#+BEGIN_SRC emacs-lisp
+(el-get-bundle init-open-recentf)
+#+END_SRC
+
+
