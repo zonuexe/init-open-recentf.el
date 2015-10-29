@@ -94,10 +94,10 @@
   (if init-open-recentf-function
       (call-interactively init-open-recentf-function)
     (cl-case (init-open-recentf-interface)
-     ((helm) (helm-recentf))
-     ((ido) (find-file (ido-completing-read "Find recent file: " recentf-list)))
-     ((anything) (anything-for-files))
-     ((default) (recentf-open-files)))))
+      ((helm) (helm-recentf))
+      ((ido) (find-file (ido-completing-read "Find recent file: " recentf-list)))
+      ((anything) (anything-for-files))
+      ((default) (recentf-open-files)))))
 
 (defun init-open-recentf-open (&rest dummy-args)
   "If files are opend, does nothing.  Open recentf otherwise.
