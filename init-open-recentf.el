@@ -86,7 +86,7 @@
       (cond
        ((and (boundp 'helm-mode) helm-mode) 'helm)
        ((and (boundp 'ido-mode) ido-mode) 'ido)
-       ((fboundp 'anything-for-files) 'anything)
+       ((fboundp 'anything-recentf) 'anything)
        (:else 'default))))
 
 (defun init-open-recentf-dwim ()
@@ -96,7 +96,7 @@
     (cl-case (init-open-recentf-interface)
       ((helm) (helm-recentf))
       ((ido) (find-file (ido-completing-read "Find recent file: " recentf-list)))
-      ((anything) (anything-for-files))
+      ((anything) (anything-recentf))
       ((default) (recentf-open-files)))))
 
 (defun init-open-recentf-open (&rest dummy-args)
