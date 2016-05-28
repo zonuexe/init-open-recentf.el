@@ -109,13 +109,13 @@
   "If files are opend, does nothing.  Open recentf otherwise.
 `DUMMY-ARGS' is ignored."
   (prog2
-      (run-hooks init-open-recentf-before-hook)
+      (run-hooks 'init-open-recentf-before-hook)
       (cond
        ((init-open-recentf-buffer-files) t)
        ((recentf-enabled-p) (init-open-recentf-dwim))
        (:else
         (error "`recentf-mode' is not enabled")))
-    (run-hooks init-open-recentf-after-hook)
+    (run-hooks 'init-open-recentf-after-hook)
     (advice-remove 'display-startup-screen #'init-open-recentf-open)))
 
 ;;;###autoload
