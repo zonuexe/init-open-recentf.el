@@ -5,7 +5,9 @@ If files are opend, does nothing.  Open recentf otherwise.
 (For example, it is when execute by specifying the file from command line.)
 This script uses only `after-init-hook'. Not privede interactive functions.
 
-put into your own .emacs file (~/.emacs.d/init.el)
+** Setup
+
+put into your own .emacs file (=~/.emacs.d/init.el=)
 
 #+BEGIN_SRC emacs-lisp
 (init-open-recentf)
@@ -26,7 +28,32 @@ If you want to do another thing, you can specify an arbitrary function.
 (init-open-recentf)
 #+END_SRC
 
-** Instllation
+** Hook
+
+#+BEGIN_SRC emacs-lisp
+(add-hook 'init-open-recentf-after-hook 'your/init-func)
+
+(add-hook
+ 'init-open-recentf-before-hook
+ (lambda ()
+   (with-current-buffer "*scratch*"
+     (goto-char (point-max))
+     (insert "
+;; 　　　　　 　r /
+;; 　 ＿＿ , --ヽ!-- .､＿
+;; 　! 　｀/::::;::::ヽ l
+;; 　!二二!::／}::::丿ハﾆ|
+;; 　!ﾆニ.|:／　ﾉ／ }::::}ｺ
+;; 　L二lイ　　0´　0 ,':ﾉｺ
+;; 　lヽﾉ/ﾍ､ ''　▽_ノイ ソ
+;;  　ソ´ ／}｀ｽ /￣￣￣￣/
+;; 　　　.(_:;つ/  0401 /　ｶﾀｶﾀ
+;;  ￣￣￣￣￣＼/＿＿＿＿/
+
+"))))
+#+END_SRC
+
+** Installation
 *** Cask (without [[https://github.com/rdallasgray/pallet][pallet]])
 See [[http://cask.readthedocs.org/en/latest/guide/installation.html][Cask Installation]].  put into your own =Cask= file.
 #+BEGIN_SRC emacs-lisp
@@ -39,5 +66,3 @@ See [[https://github.com/dimitri/el-get#installation][El-Get #Installation]].  p
 #+BEGIN_SRC emacs-lisp
 (el-get-bundle init-open-recentf)
 #+END_SRC
-
-

@@ -71,6 +71,12 @@
                 (const :tag "Select automatically" 'nil))
   :group 'init-open-recentf)
 
+(defvar init-open-recentf-before-hook nil
+  "Run hooks before `init-open-recentf-open'.")
+
+(defvar init-open-recentf-after-hook nil
+  "Run hooks after `init-open-recentf-open'.")
+
 (defun init-open-recentf-buffer-files ()
   "Return list of opened file names."
   (let ((found-files '()))
@@ -102,13 +108,15 @@
 (defun init-open-recentf-open (&rest dummy-args)
   "If files are opend, does nothing.  Open recentf otherwise.
 `DUMMY-ARGS' is ignored."
-  (prog1
+  (prog2
+      (run-hooks init-open-recentf-before-hook)
       (cond
        ((init-open-recentf-buffer-files) t)
        ((recentf-enabled-p) (init-open-recentf-dwim))
        (:else
-        (error "recentf-mode is not enabled."))))
-  (advice-remove 'display-startup-screen #'init-open-recentf-open))
+        (error "`recentf-mode' is not enabled")))
+    (run-hooks init-open-recentf-after-hook)
+    (advice-remove 'display-startup-screen #'init-open-recentf-open)))
 
 ;;;###autoload
 (defun init-open-recentf ()
