@@ -3,7 +3,7 @@
 Open recentf immediately after Emacs is started.
 If files are opend, does nothing.  Open recentf otherwise.
 (For example, it is when execute by specifying the file from command line.)
-This script uses only `after-init-hook'. Not privede interactive functions.
+This script uses only `after-init-hook'. Do not have interactive function.
 
 ** Setup
 
