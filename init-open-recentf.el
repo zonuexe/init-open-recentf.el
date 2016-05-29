@@ -28,7 +28,7 @@
 ;; Open recentf immediately after Emacs is started.
 ;; If files are opend, does nothing.  Open recentf otherwise.
 ;; (For example, it is when execute by specifying the file from command line.)
-;; This script uses only advice function for startup.  Not privede interactive functions.
+;; This script uses only advice function for startup.  Do not have interactive function.
 ;; (This approach's dirty hack, but the hook to be the alternative does not exist.)
 ;;
 ;; put into your own .emacs file (~/.emacs.d/init.el)
