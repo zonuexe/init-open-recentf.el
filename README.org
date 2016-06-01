@@ -1,27 +1,29 @@
 * init-open-recentf.el
 
 Open recentf immediately after Emacs is started.
-If files are opend, does nothing.  Open recentf otherwise.
-(For example, it is when execute by specifying the file from command line.)
-This script uses only `after-init-hook'. Do not have interactive function.
+Here are some example scenarios for when Emacs is started from the command line:
+  - If files are opened (e.g. '$ emacs file1.txt'), nothing out of the ordinary occurs-- the file is opened.
+  - However if a file is not indicated (e.g. '$ emacs '), recentf will be opened after emacs is initialized.
+This script uses only the inbuilt advice function for startup.  It does not require or use any interactive function.
 
 ** Setup
 
-put into your own .emacs file (=~/.emacs.d/init.el=)
+Put the following into your .emacs file (~/.emacs.d/init.el)
 
 #+BEGIN_SRC emacs-lisp
 (init-open-recentf)
 #+END_SRC
 
-=init-open-recentf= Support helm, ido, anything (or nothing).
-Determine from your environment, but it is also possible that you explicitly.
+=init-open-recentf=  supports the following frameworks: helm, ido, anything (and the default emacs setup without those frameworks).
+
+The package determines the frameworks from your environment, but you can also indicate it explicitly.
 
 #+BEGIN_SRC emacs-lisp
 (setq init-open-recentf-interface 'ido)
 (init-open-recentf)
 #+END_SRC
 
-If you want to do another thing, you can specify an arbitrary function.
+Another possible configuration is demonstrated below if you want to specify an arbitrary function.
 
 #+BEGIN_SRC emacs-lisp
 (setq init-open-recentf-function #'awesome-open-recentf)
@@ -55,14 +57,14 @@ If you want to do another thing, you can specify an arbitrary function.
 
 ** Installation
 *** Cask (without [[https://github.com/rdallasgray/pallet][pallet]])
-See [[http://cask.readthedocs.org/en/latest/guide/installation.html][Cask Installation]].  put into your own =Cask= file.
+See the [[http://cask.readthedocs.org/en/latest/guide/installation.html][Cask Installation]] guide.  Put into your =Cask= file the following.
 #+BEGIN_SRC emacs-lisp
 (depends-on "init-open-recentf")
 #+END_SRC
 *** MELPA
 See [[http://melpa.org/#/getting-started][Getting Started - MELPA]].  =M-x package-install= and type =init-open-recentf=.
 *** El-get
-See [[https://github.com/dimitri/el-get#installation][El-Get #Installation]].  put into your own =init.el= file.
+See [[https://github.com/dimitri/el-get#installation][El-Get #Installation]].  Put into your =init.el= file the following.
 #+BEGIN_SRC emacs-lisp
 (el-get-bundle init-open-recentf)
 #+END_SRC

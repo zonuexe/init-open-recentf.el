@@ -26,22 +26,23 @@
 ;;; Commentary:
 ;;
 ;; Open recentf immediately after Emacs is started.
-;; If files are opend, does nothing.  Open recentf otherwise.
-;; (For example, it is when execute by specifying the file from command line.)
-;; This script uses only advice function for startup.  Do not have interactive function.
-;; (This approach's dirty hack, but the hook to be the alternative does not exist.)
+;; Here are some example scenarios for when Emacs is started from the command line:
+;;   - If files are opened (e.g. '$ emacs file1.txt'), nothing out of the ordinary occurs-- the file is opened.
+;;   - However if a file is not indicated (e.g. '$ emacs '), recentf will be opened after emacs is initialized.
+;; This script uses only the inbuilt advice function for startup.  It does not require or use any interactive function.
+;; (This approach is a dirty hack, but an alternative hook to accomplish the same thing does not exist.)
 ;;
-;; put into your own .emacs file (~/.emacs.d/init.el)
+;; Put the following into your .emacs file (~/.emacs.d/init.el)
 ;;
 ;;   (init-open-recentf)
 ;;
-;; `init-open-recentf' Support helm, ido, anything (or nothing).
-;; Determine from your environment, but it is also possible that you explicitly.
+;; `init-open-recentf' supports the following frameworks: helm, ido, anything (and the default emacs setup without those frameworks).
+;;  The package determines the frameworks from your environment, but you can also indicate it explicitly.
 ;;
 ;;   (setq init-open-recentf-interface 'ido)
 ;;   (init-open-recentf)
 ;;
-;; If you want to do another thing, you can specify an arbitrary function.
+;; Another possible configuration is demonstrated below if you want to specify an arbitrary function.
 ;;
 ;;   (setq init-open-recentf-function #'awesome-open-recentf)
 ;;   (init-open-recentf)
@@ -66,7 +67,7 @@
   "Interface to open recentf files."
   :type '(radio (const :tag "Use ido interface" 'ido)
                 (const :tag "Use helm interface" 'helm)
-                (const :tag "Use anything intereface" 'anything)
+                (const :tag "Use anything interface" 'anything)
                 (const :tag "Use Emacs default (recentf-open-files)" 'default)
                 (const :tag "Select automatically" 'nil))
   :group 'init-open-recentf)
@@ -106,7 +107,7 @@
       ((default) (recentf-open-files)))))
 
 (defun init-open-recentf-open (&rest dummy-args)
-  "If files are opend, does nothing.  Open recentf otherwise.
+  "If files are opened, does nothing.  Open recentf otherwise.
 `DUMMY-ARGS' is ignored."
   (prog2
       (run-hooks 'init-open-recentf-before-hook)
