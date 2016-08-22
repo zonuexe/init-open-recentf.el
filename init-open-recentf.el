@@ -54,7 +54,7 @@
 
 (defgroup init-open-recentf nil
   "init-open-recentf"
-  :group 'emacs)
+  :group 'initialization)
 
 (defcustom init-open-recentf-function
   nil
