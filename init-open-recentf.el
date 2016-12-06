@@ -5,7 +5,8 @@
 ;; Author: USAMI Kenta <tadsan@zonu.me>
 ;; Created: 26 Oct 2015
 ;; Version: 0.0.1
-;; Keywords: file recentf after-init-hook
+;; Homepage: https://github.com/zonuexe/init-open-recentf.el
+;; Keywords: files recentf after-init-hook
 ;; Package-Requires: ((emacs "24.4"))
 
 ;; This file is NOT part of GNU Emacs.
@@ -36,7 +37,7 @@
 ;;
 ;;   (init-open-recentf)
 ;;
-;; `init-open-recentf' supports the following frameworks: helm, ido, anything (and the default emacs setup without those frameworks).
+;; `init-open-recentf' supports the following frameworks: helm, ido, anything (and the default Emacs setup without those frameworks).
 ;;  The package determines the frameworks from your environment, but you can also indicate it explicitly.
 ;;
 ;;   (setq init-open-recentf-interface 'ido)
