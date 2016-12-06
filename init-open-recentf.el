@@ -69,6 +69,7 @@
   :type '(radio (const :tag "Use ido interface" 'ido)
                 (const :tag "Use helm interface" 'helm)
                 (const :tag "Use anything interface" 'anything)
+                (const :tag "Use Ivy/counsel interface" 'counsel)
                 (const :tag "Use Emacs default (recentf-open-files)" 'default)
                 (const :tag "Select automatically" 'nil))
   :group 'init-open-recentf)
@@ -94,6 +95,7 @@
       (cond
        ((and (boundp 'helm-mode) helm-mode) 'helm)
        ((and (boundp 'ido-mode) ido-mode) 'ido)
+       ((and (boundp 'counsel-mode) counsel-mode) 'counsel)
        ((fboundp 'anything-recentf) 'anything)
        (:else 'default))))
 
@@ -104,6 +106,7 @@
     (cl-case (init-open-recentf-interface)
       ((helm) (helm-recentf))
       ((ido) (find-file (ido-completing-read "Find recent file: " recentf-list)))
+      ((counsel) (counsel-recentf))
       ((anything) (anything-recentf))
       ((default) (recentf-open-files)))))
 
