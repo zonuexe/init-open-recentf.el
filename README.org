@@ -1,4 +1,8 @@
 * init-open-recentf.el
+#+BEGIN_HTML
+<a href="http://melpa.org/#/init-open-recentf"><img alt="MELPA init-open-recentf" src="http://melpa.org/packages/init-open-recentf-badge.svg"</a>
+<a href="http://stable.melpa.org/#/init-open-recentf"><img alt="MELPA stable: init-open-recentf" src="http://stable.melpa.org/packages/init-open-recentf-badge.svg"></a>
+#+END_HTML
 
 Open recentf immediately after Emacs is started.
 Here are some example scenarios for when Emacs is started from the command line:
