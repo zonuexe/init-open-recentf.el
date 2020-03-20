@@ -95,7 +95,7 @@
     found-files))
 
 (defun init-open-recentf-interface ()
-  ""
+  "Return the symbol of the detected Emacs user interface mode."
   (or init-open-recentf-interface
       (cond
        ((and (boundp 'helm-mode) helm-mode) 'helm)
