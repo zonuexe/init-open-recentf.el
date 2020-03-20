@@ -4,7 +4,7 @@
 
 ;; Author: USAMI Kenta <tadsan@zonu.me>
 ;; Created: 26 Oct 2015
-;; Version: 0.1.0
+;; Version: 0.2.0
 ;; Homepage: https://github.com/zonuexe/init-open-recentf.el
 ;; Keywords: files recentf after-init-hook
 ;; Package-Requires: ((emacs "24.4"))
