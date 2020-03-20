@@ -79,6 +79,11 @@
                 (const :tag "Select automatically" 'nil))
   :group 'init-open-recentf)
 
+(defcustom init-open-recentf-use-advice (eval-when-compile (< emacs-major-version 27))
+  "If T, use advice to `command-line-1'."
+  :type 'boolean
+  :group 'init-open-recentf)
+
 (defvar init-open-recentf-before-hook nil
   "Run hooks before `init-open-recentf-open'.")
 
@@ -131,8 +136,10 @@
 ;;;###autoload
 (defun init-open-recentf ()
   "Set 'after-init-hook ."
-  (advice-add 'command-line-1 :after #'init-open-recentf-open)
-  t)
+  (prog1 t
+    (if init-open-recentf-use-advice
+        (advice-add 'command-line-1 :after #'init-open-recentf-open)
+      (run-with-idle-timer 0.1 nil #'init-open-recentf-open))))
 
 (provide 'init-open-recentf)
 ;;; init-open-recentf.el ends here
