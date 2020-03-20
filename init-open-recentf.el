@@ -110,7 +110,7 @@
       ((anything) (anything-recentf))
       ((default) (recentf-open-files)))))
 
-(defun init-open-recentf-open (&rest dummy-args)
+(defun init-open-recentf-open (&rest _dummy-args)
   "If files are opened, does nothing.  Open recentf otherwise.
 `DUMMY-ARGS' is ignored."
   (prog2
