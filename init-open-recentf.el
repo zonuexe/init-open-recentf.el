@@ -8,6 +8,7 @@
 ;; Homepage: https://github.com/zonuexe/init-open-recentf.el
 ;; Keywords: files recentf after-init-hook
 ;; Package-Requires: ((emacs "24.4"))
+;; License: GPL-3.0-or-later
 
 ;; This file is NOT part of GNU Emacs.
 
