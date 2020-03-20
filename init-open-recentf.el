@@ -1,6 +1,6 @@
-;;; init-open-recentf.el --- Open recentf immediately after Emacs is started -*- coding: utf-8 ; lexical-binding: t -*-
+;;; init-open-recentf.el --- Invoke a command immediately after startup -*- lexical-binding: t -*-
 
-;; Copyright (C) 2015 USAMI Kenta
+;; Copyright (C) 2020 USAMI Kenta
 
 ;; Author: USAMI Kenta <tadsan@zonu.me>
 ;; Created: 26 Oct 2015
