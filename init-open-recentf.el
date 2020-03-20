@@ -53,6 +53,11 @@
 (require 'cl-lib)
 (require 'recentf)
 
+(eval-when-compile
+  (declare-function anything-recentf "anything.el" () t)
+  (declare-function counsel-recentf "counsel.el" () t)
+  (declare-function helm-recentf "helm-for-files.el" () t))
+
 (defgroup init-open-recentf nil
   "init-open-recentf"
   :group 'initialization)
