@@ -123,6 +123,7 @@
 (defun init-open-recentf-open (&rest _dummy-args)
   "If files are opened, does nothing.  Open recentf otherwise.
 `DUMMY-ARGS' is ignored."
+  (run-hooks 'init-open-recentf-before-hook)
   (cond
    ((init-open-recentf-buffer-files) t)
    ((recentf-enabled-p) (init-open-recentf-dwim))
