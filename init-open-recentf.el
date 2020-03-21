@@ -140,7 +140,7 @@
   (prog1 t
     (if init-open-recentf-use-advice
         (advice-add 'command-line-1 :after #'init-open-recentf-open)
-      (run-with-idle-timer 0.1 nil #'init-open-recentf-open))))
+      (run-with-idle-timer 0.00001 nil #'init-open-recentf-open))))
 
 (provide 'init-open-recentf)
 ;;; init-open-recentf.el ends here
