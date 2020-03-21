@@ -63,8 +63,7 @@
   "init-open-recentf"
   :group 'initialization)
 
-(defcustom init-open-recentf-function
-  nil
+(defcustom init-open-recentf-function nil
   "Function to open recentf files (or other)."
   :type '(function :tag "Invoke recentf (or other) function")
   :group 'init-open-recentf)
