@@ -18,7 +18,7 @@ Put the following into your .emacs file (=~/.emacs.d/init.el=)
 (init-open-recentf)
 #+END_SRC
 
-=init-open-recentf=  supports the following frameworks: [[https://emacs-helm.github.io/helm/][Helm]], [[https://www.gnu.org/software/emacs/manual/ido.html][IDO]], [[https://github.com/abo-abo/swiper][Ivy/Counsel]] and [[https://www.emacswiki.org/emacs/Anything][Anything]] (and the default emacs setup without those frameworks).
+=init-open-recentf=  supports the following frameworks: [[https://github.com/minad/consult][Consult]], [[https://emacs-helm.github.io/helm/][Helm]], [[https://www.gnu.org/software/emacs/manual/ido.html][IDO]], [[https://github.com/abo-abo/swiper][Ivy/Counsel]] and [[https://www.emacswiki.org/emacs/Anything][Anything]] (and the default emacs setup without those frameworks).
 
 The package determines the frameworks from your environment, but you can also indicate it explicitly.
 
