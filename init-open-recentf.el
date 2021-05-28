@@ -51,7 +51,8 @@
 ;;
 
 ;;; Code:
-(require 'cl-lib)
+(eval-when-compile
+  (require 'cl-lib))
 (require 'recentf)
 
 (eval-when-compile
@@ -92,14 +93,11 @@
 (defvar init-open-recentf-after-hook nil
   "Run hooks after `init-open-recentf-open'.")
 
-(defun init-open-recentf-buffer-files ()
-  "Return list of opened file names."
-  (let ((found-files '()))
-    (dolist (buffer (buffer-list))
-      (with-current-buffer buffer
-        (when buffer-file-name
-          (cl-pushnew buffer-file-name found-files))))
-    found-files))
+(defun init-open-recentf--opened-file-buffer ()
+  "Return T when there are opened file buffers."
+  (cl-loop for buf in (buffer-list)
+           if (with-current-buffer buf buffer-file-name)
+           return t))
 
 (defun init-open-recentf-interface ()
   "Return the symbol of the detected Emacs user interface mode."
@@ -129,7 +127,7 @@
 `DUMMY-ARGS' is ignored."
   (run-hooks 'init-open-recentf-before-hook)
   (cond
-   ((init-open-recentf-buffer-files) t)
+   ((init-open-recentf--opened-file-buffer) t)
    ((recentf-enabled-p) (init-open-recentf-dwim))
    (:else
     (error "`recentf-mode' is not enabled")))
