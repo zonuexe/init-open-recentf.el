@@ -58,7 +58,7 @@
   (declare-function anything-recentf "ext:anything.el" () t)
   (declare-function counsel-recentf "ext:counsel.el" () t)
   (declare-function helm-recentf "ext:helm-for-files.el" () t)
-  )
+  (declare-function consult-recent-file "ext:consult.el" () t))
 
 (defgroup init-open-recentf nil
   "init-open-recentf"
@@ -76,6 +76,7 @@
                 (const :tag "Use helm interface" 'helm)
                 (const :tag "Use anything interface" 'anything)
                 (const :tag "Use Ivy/counsel interface" 'counsel)
+                (const :tag "Use Consult command" 'consult)
                 (const :tag "Use Emacs default (recentf-open-files)" 'default)
                 (const :tag "Select automatically" 'nil))
   :group 'init-open-recentf)
@@ -107,6 +108,7 @@
        ((and (boundp 'helm-mode) helm-mode) 'helm)
        ((and (boundp 'ido-mode) ido-mode) 'ido)
        ((and (boundp 'counsel-mode) counsel-mode) 'counsel)
+       ((fboundp 'consult-recent-file) 'consult)
        ((fboundp 'anything-recentf) 'anything)
        (:else 'default))))
 
@@ -115,6 +117,7 @@
   (if init-open-recentf-function
       (call-interactively init-open-recentf-function)
     (cl-case (init-open-recentf-interface)
+      ((consult) (consult-recent-file))
       ((helm) (helm-recentf))
       ((ido) (find-file (ido-completing-read "Find recent file: " recentf-list)))
       ((counsel) (counsel-recentf))
