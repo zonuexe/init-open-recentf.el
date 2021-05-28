@@ -55,9 +55,10 @@
 (require 'recentf)
 
 (eval-when-compile
-  (declare-function anything-recentf "anything.el" () t)
-  (declare-function counsel-recentf "counsel.el" () t)
-  (declare-function helm-recentf "helm-for-files.el" () t))
+  (declare-function anything-recentf "ext:anything.el" () t)
+  (declare-function counsel-recentf "ext:counsel.el" () t)
+  (declare-function helm-recentf "ext:helm-for-files.el" () t)
+  )
 
 (defgroup init-open-recentf nil
   "init-open-recentf"
