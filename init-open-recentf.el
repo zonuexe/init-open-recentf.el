@@ -96,7 +96,7 @@
 (defun init-open-recentf--opened-file-buffer ()
   "Return T when there are opened file buffers."
   (cl-loop for buf in (buffer-list)
-           if (with-current-buffer buf buffer-file-name)
+           if (buffer-local-value 'buffer-file-name buf)
            return t))
 
 (defun init-open-recentf-interface ()
