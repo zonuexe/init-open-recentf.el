@@ -105,9 +105,9 @@
   "Return the symbol of the detected Emacs user interface mode."
   (or init-open-recentf-interface
       (cond
-       ((and (boundp 'helm-mode) helm-mode) 'helm)
-       ((and (boundp 'ido-mode) ido-mode) 'ido)
-       ((and (boundp 'counsel-mode) counsel-mode) 'counsel)
+       ((bound-and-true-p helm-mode) 'helm)
+       ((bound-and-true-p ido-mode) 'ido)
+       ((bound-and-true-p counsel-mode) 'counsel)
        ((fboundp 'consult-recent-file) 'consult)
        ((fboundp 'anything-recentf) 'anything)
        (:else 'default))))
