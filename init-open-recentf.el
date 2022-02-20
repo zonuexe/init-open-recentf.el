@@ -30,7 +30,7 @@
 ;; Open recentf immediately after Emacs is started.
 ;; Here are some example scenarios for when Emacs is started from the command line:
 ;;   - If files are opened (e.g. '$ emacs file1.txt'), nothing out of the ordinary occurs-- the file is opened.
-;;   - However if a file is not indicated (e.g. '$ emacs '), recentf will be opened after emacs is initialized.
+;;   - However if a file is not indicated (e.g. '$ emacs '), recentf will be opened after Emacs is initialized.
 ;; This script uses only the inbuilt advice function for startup.  It does not require or use any interactive function.
 ;; (This approach is a dirty hack, but an alternative hook to accomplish the same thing does not exist.)
 ;;
@@ -62,7 +62,7 @@
   (declare-function consult-recent-file "ext:consult.el" () t))
 
 (defgroup init-open-recentf nil
-  "init-open-recentf"
+  "Invoke a command immediately after startup."
   :group 'initialization)
 
 (defcustom init-open-recentf-function nil
@@ -70,8 +70,7 @@
   :type '(function :tag "Invoke recentf (or other) function")
   :group 'init-open-recentf)
 
-(defcustom init-open-recentf-interface
-  nil
+(defcustom init-open-recentf-interface nil
   "Interface to open recentf files."
   :type '(radio (const :tag "Use ido interface" 'ido)
                 (const :tag "Use helm interface" 'helm)
@@ -79,7 +78,7 @@
                 (const :tag "Use Ivy/counsel interface" 'counsel)
                 (const :tag "Use Consult command" 'consult)
                 (const :tag "Use Emacs default (recentf-open-files)" 'default)
-                (const :tag "Select automatically" 'nil))
+                (const :tag "Select automatically" nil))
   :group 'init-open-recentf)
 
 (defcustom init-open-recentf-use-advice (eval-when-compile (< emacs-major-version 27))
@@ -108,7 +107,7 @@
        ((bound-and-true-p counsel-mode) 'counsel)
        ((fboundp 'consult-recent-file) 'consult)
        ((fboundp 'anything-recentf) 'anything)
-       (:else 'default))))
+       (t 'default))))
 
 (defun init-open-recentf-dwim ()
   "Open recent file command you want (Do What I Mean)."
@@ -124,18 +123,17 @@
 
 (defun init-open-recentf-open (&rest _dummy-args)
   "If files are opened, does nothing.  Open recentf otherwise.
-`DUMMY-ARGS' is ignored."
+DUMMY-ARGS is ignored."
   (run-hooks 'init-open-recentf-before-hook)
   (cond
    ((init-open-recentf--opened-file-buffer) t)
    ((recentf-enabled-p) (init-open-recentf-dwim))
-   (:else
-    (error "`recentf-mode' is not enabled")))
+   (t (user-error "`recentf-mode' is not enabled")))
   (run-hooks 'init-open-recentf-after-hook))
 
 ;;;###autoload
 (defun init-open-recentf ()
-  "Set 'after-init-hook ."
+  "Set 'after-init-hook."
   (prog1 t
     (if init-open-recentf-use-advice
         (advice-add 'command-line-1 :after #'init-open-recentf-open)
