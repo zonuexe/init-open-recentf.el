@@ -1,6 +1,6 @@
 ;;; init-open-recentf.el --- Invoke a command immediately after startup -*- lexical-binding: t -*-
 
-;; Copyright (C) 2020 USAMI Kenta
+;; Copyright (C) 2022 USAMI Kenta
 
 ;; Author: USAMI Kenta <tadsan@zonu.me>
 ;; Created: 26 Oct 2015

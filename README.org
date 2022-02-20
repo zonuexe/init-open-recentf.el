@@ -2,6 +2,7 @@
 #+BEGIN_HTML
 <a href="https://melpa.org/#/init-open-recentf"><img alt="MELPA init-open-recentf" src="https://melpa.org/packages/init-open-recentf-badge.svg"</a>
 <a href="https://stable.melpa.org/#/init-open-recentf"><img alt="MELPA stable: init-open-recentf" src="https://stable.melpa.org/packages/init-open-recentf-badge.svg"></a>
+<a href="https://www.gnu.org/software/emacs/"><img alt="Emacs: 28.0" src="https://img.shields.io/badge/Emacs-28.0-blue.svg"></a>
 #+END_HTML
 
 Open recentf immediately after Emacs is started.
@@ -43,8 +44,9 @@ Another possible configuration is demonstrated below if you want to specify an a
  'init-open-recentf-before-hook
  (lambda ()
    (with-current-buffer "*scratch*"
-     (goto-char (point-max))
-     (insert "
+     (unless buffer-read-only
+       (goto-char (1- (point-max)))
+       (insert "
 ;; 　　　　　 　r /
 ;; 　 ＿＿ , --ヽ!-- .､＿
 ;; 　! 　｀/::::;::::ヽ l
@@ -55,8 +57,7 @@ Another possible configuration is demonstrated below if you want to specify an a
 ;;  　ソ´ ／}｀ｽ /￣￣￣￣/
 ;; 　　　.(_:;つ/  0401 /　ｶﾀｶﾀ
 ;;  ￣￣￣￣￣＼/＿＿＿＿/
-
-"))))
+")))))
 #+END_SRC
 
 ** Installation
